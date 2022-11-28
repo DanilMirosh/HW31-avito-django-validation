@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Custom
+/help files
+
 # C extensions
 *.so
 
@@ -110,11 +113,11 @@ ENV/
 env.bak/
 venv.bak/
 
-# Spyder project settings
+# Spyder app settings
 .spyderproject
 .spyproject
 
-# Rope project settings
+# Rope app settings
 .ropeproject
 
 # mkdocs documentation
@@ -127,6 +130,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-/.vscode/
-/.idea/
+.idea/
 .DS_Store
