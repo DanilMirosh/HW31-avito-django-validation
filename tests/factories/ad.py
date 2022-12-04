@@ -1,8 +1,8 @@
-import factory.django
+import factory
 
 from ads.models import Ad
-from .user import UserFactory
 from .category import CategoryFactory
+from .user import UserFactory
 
 
 class AdFactory(factory.django.DjangoModelFactory):
