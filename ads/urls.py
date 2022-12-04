@@ -7,6 +7,7 @@ from ads.views.selection import *
 
 router = routers.SimpleRouter()
 router.register('location', LocationViewSet)
+router.register('cat', CategoryViewSet)
 
 urlpatterns = [
     path('', index),

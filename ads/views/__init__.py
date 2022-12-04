@@ -1,5 +1,9 @@
+
+
 from .ad import AdListView, AdDetailView, AdUpdateView, AdImageView, AdDeleteView, AdCreateView
-from .category import CategoryListView, CategoryDetailView, CategoryUpdateView, CategoryDeleteView, CategoryCreateView
+from .category import CategoryViewSet
+from .location import LocationViewSet
+from .selection import *
 from .index import index
 
 __all__ = [
@@ -9,10 +13,12 @@ __all__ = [
     'AdImageView',
     'AdDeleteView',
     'AdCreateView',
-    'CategoryListView',
-    'CategoryDetailView',
-    'CategoryUpdateView',
-    'CategoryDeleteView',
-    'CategoryCreateView',
-    'index'
+    'CategoryViewSet',
+    'LocationViewSet',
+    'SelectionListView',
+    'SelectionDetailView',
+    'SelectionCreateView',
+    'SelectionUpdateView',
+    'SelectionDeleteView',
+    'index',
 ]
