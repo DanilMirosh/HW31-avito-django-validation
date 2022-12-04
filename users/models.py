@@ -5,19 +5,21 @@ from ads.models.location import Location
 from users.validators import check_age
 
 
-class UserRole:
+class User(AbstractUser):
     ADMIN = 'admin'
-    MODERATOR = 'moderator'
     MEMBER = 'member'
+    MODERATOR = 'moderator'
     ROLES = [
         (ADMIN, 'администратор'),
         (MEMBER, 'пользователь'),
         (MODERATOR, 'модератор')
     ]
 
-
-class User(AbstractUser):
-    role = models.CharField(max_length=10, choices=UserRole.ROLES, default=UserRole.MEMBER, null=True)
+    first_name = models.CharField(max_length=100, null=True)
+    last_name = models.CharField(max_length=150, null=True)
+    username = models.CharField(max_length=20, unique=True)
+    password = models.CharField(max_length=200)
+    role = models.CharField(max_length=10, choices=ROLES, default='member', null=True)
     age = models.SmallIntegerField(null=True)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, null=True)
     birth_date = models.DateField(null=True, validators=[check_age])

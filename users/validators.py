@@ -15,9 +15,10 @@ class EmailDomainValidator:
     def __init__(self, domains):
         if not isinstance(domains, list):
             domains = [domains]
+
         self.domains = domains
 
     def __call__(self, email):
         domain = email.split('@')[1]
-        if damain in self.domains:
+        if domain in self.domains:
             raise serializers.ValidationError(f"Domain couldn't be {domain}")

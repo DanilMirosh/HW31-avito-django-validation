@@ -23,7 +23,6 @@ class UserCreateSerializer(serializers.ModelSerializer):
         queryset=Location.objects.all(),
         slug_field='name'
     )
-
     email = serializers.EmailField(validators=[EmailDomainValidator('rambler.ru')])
 
     class Meta:
@@ -31,7 +30,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def is_valid(self, raise_exception=False):
-        self._location = self.initial_data.pop('location',[])
+        self._location = self.initial_data.pop('location')
         return super().is_valid(raise_exception=raise_exception)
 
     def create(self, validated_data):
@@ -61,7 +60,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def is_valid(self, raise_exception=False):
-        self._location = self.initial_data.pop('location', [])
+        self._location = self.initial_data.pop('location')
         return super().is_valid(raise_exception=raise_exception)
 
     def save(self):
