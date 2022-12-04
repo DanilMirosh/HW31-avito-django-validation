@@ -1,13 +1,7 @@
-from rest_framework import permissions
-from users.models import User
+from .ad import IsCreatedByOrAdminOrModerator
+from .selection import IsCreatedBy
 
-
-class IncreateByOrAdminOrModerator(permissions.BasePermission):
-    message = 'Only user who created the ad, admin and moderators cloud modify or delete it'
-
-    def has_object_permission(self, request, view, obj):
-        if request.user.role == User.ADMIN or request.user.role == User.MODERATOR:
-            return True
-        if obj.author == request.user:
-            return True
-        return False
+__all__ = [
+    'IsCreatedByOrAdminOrModerator',
+    'IsCreatedBy',
+]

@@ -2,6 +2,7 @@ from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
 
 from ads.models import Category, Ad
+from ads.validators import check_not_published
 from users.models import User
 
 
@@ -25,6 +26,9 @@ class AdSerializer(serializers.ModelSerializer):
 class AdCreateSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(required=False)
     image = serializers.ImageField(required=False)
+    name = serializers.CharField(allow_blank=False, min_length=10, max_length=100)
+    price = serializers.IntegerField(min_value=0, default=0)
+
     author = serializers.SlugRelatedField(
         required=False,
         queryset=User.objects.all(),
@@ -35,6 +39,8 @@ class AdCreateSerializer(serializers.ModelSerializer):
         queryset=Category.objects.all(),
         slug_field='name'
     )
+
+    is_published = serializers.BooleanField(default=None, validators=[check_not_published])
 
     class Meta:
         model = Ad
@@ -63,6 +69,7 @@ class AdUpdateSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
     image = serializers.ImageField(required=False)
     author = serializers.PrimaryKeyRelatedField(read_only=True)
+
     category = serializers.SlugRelatedField(
         required=False,
         queryset=Category.objects.all(),

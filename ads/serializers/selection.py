@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from ads.models.selection import Selection
-from ads.serializers.ad import AdSerializer
+from ads.models import Selection
 
 
 class SelectionSerializer(serializers.ModelSerializer):
@@ -20,14 +19,6 @@ class SelectionCreateSerializer(serializers.ModelSerializer):
 
 class SelectionUpdateSerializer(serializers.ModelSerializer):
     owner = serializers.PrimaryKeyRelatedField(read_only=True)
-
-    class Meta:
-        model = Selection
-        fields = '__all__'
-
-
-class SelectionDetailSerializer(serializers.ModelSerializer):
-    items = AdSerializer(many=True)
 
     class Meta:
         model = Selection
