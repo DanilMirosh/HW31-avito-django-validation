@@ -3,6 +3,7 @@ import pytest
 
 @pytest.mark.django_db
 def test_ad_create(client, user, category):
+
     expected_response = {
         "id": user.id,
         "image": None,
@@ -35,6 +36,7 @@ def test_ad_create(client, user, category):
 
 @pytest.mark.django_db
 def test_ad_create_price_less_than_zero(client, user, category):
+
     expected_response = {
         "price": [
             "Ensure this value is greater than or equal to 0."
@@ -62,6 +64,7 @@ def test_ad_create_price_less_than_zero(client, user, category):
 
 @pytest.mark.django_db
 def test_ad_create_is_published_true(client, user, category):
+
     expected_response = {
         "is_published": [
             "This field may not be True"
@@ -89,6 +92,7 @@ def test_ad_create_is_published_true(client, user, category):
 
 @pytest.mark.django_db
 def test_ad_create_name_less_10_chars(client, user, category):
+
     expected_response = {
         "name": [
             "Ensure this field has at least 10 characters."
@@ -112,4 +116,3 @@ def test_ad_create_name_less_10_chars(client, user, category):
 
     assert response.status_code == 400
     assert response.data == expected_response
-   
